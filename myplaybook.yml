@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+  - name: ensure git is installed
+    yum: name=git state=latest
+    become: yes
+  - name: petclinic cloned to /home/ec2-user/pet-clinic
+    git: repo=https://github.com/dallswang/spring-petclinic.git
+         dest=/home/ec2-user/pet-client
+         accept_hostkey=yes
+         force=yes
+         recursive=no
+  - name: coursecd is cloned to /home/ec2-user/cdcourse
+    git: repo=https://github.com/dallswang/cdcourse.git
+         dest=/home/ec2-user/cdcourse
